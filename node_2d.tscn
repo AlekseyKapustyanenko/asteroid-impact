@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://b6n14v7gleaw7"]
+[gd_scene load_steps=99 format=3 uid="uid://b6n14v7gleaw7"]
 
 [ext_resource type="Script" path="res://Space.gd" id="1_3f6q2"]
 [ext_resource type="Texture2D" uid="uid://orlpg0isflao" path="res://Assets/Backgrounds/PNGs/Condesed/Starry background  - Layer 01 - Void.png" id="1_pqyoj"]
@@ -655,12 +655,6 @@ animations = [{
 "speed": 11.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ebh8"]
-size = Vector2(66, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_574nc"]
-size = Vector2(66, 20)
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Space" type="ParallaxBackground" parent="."]
@@ -700,14 +694,6 @@ autoplay = "default"
 frame_progress = 0.0644779
 
 [node name="Ship" parent="." instance=ExtResource("7_62gjn")]
-position = Vector2(32, 192)
-
-[node name="WorldUpperLimit" type="StaticBody2D" parent="."]
-
-[node name="UpperLimit" type="CollisionShape2D" parent="WorldUpperLimit"]
-position = Vector2(32, 56)
-shape = SubResource("RectangleShape2D_1ebh8")
-
-[node name="LowerLimit" type="CollisionShape2D" parent="WorldUpperLimit"]
-position = Vector2(32, 552)
-shape = SubResource("RectangleShape2D_574nc")
+position = Vector2(64, 320)
+highestPosition = 128.0
+lowestPosition = 480.0
