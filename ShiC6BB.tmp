@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://djapl0b46wfg7"]
+
+[ext_resource type="Texture2D" uid="uid://bp0ok6qmahfq5" path="res://assets/Backgrounds/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Idle.png" id="1_1p6vp"]
+[ext_resource type="Script" path="res://Ship.gd" id="1_u5g71"]
+[ext_resource type="Texture2D" uid="uid://cfwu0xxodx47h" path="res://Assets/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="2_x52xo"]
+[ext_resource type="Texture2D" uid="uid://tjy21f1sa3yw" path="res://Assets/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="3_t7hhv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wgdl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg8rl"]
+atlas = ExtResource("1_1p6vp")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux3jj"]
+atlas = ExtResource("1_1p6vp")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvchd"]
+atlas = ExtResource("1_1p6vp")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvy7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg8rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux3jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvchd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ship" type="CharacterBody2D"]
+script = ExtResource("1_u5g71")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0wgdl")
+
+[node name="EnguineEffect" type="AnimatedSprite2D" parent="."]
+position = Vector2(-10, 0)
+rotation = 1.5708
+scale = Vector2(0.742515, 0.679004)
+sprite_frames = SubResource("SpriteFrames_kvy7o")
+frame_progress = 0.14234
+
+[node name="ShipBody" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, 2.84217e-14)
+rotation = 1.5708
+scale = Vector2(1, 1)
+texture = ExtResource("2_x52xo")
+
+[node name="Enguine" type="Sprite2D" parent="."]
+position = Vector2(-8, 0)
+rotation = 1.5708
+scale = Vector2(0.727208, 0.727208)
+texture = ExtResource("3_t7hhv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.4, 1.4)
+process_callback = 0
+limit_left = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
