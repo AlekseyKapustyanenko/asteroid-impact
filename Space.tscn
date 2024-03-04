@@ -1,0 +1,136 @@
+[gd_scene load_steps=19 format=3 uid="uid://bfekoed8ah4t2"]
+
+[ext_resource type="Script" path="res://Space.gd" id="1_xfdbb"]
+[ext_resource type="Texture2D" uid="uid://orlpg0isflao" path="res://Assets/Backgrounds/PNGs/Condesed/Starry background  - Layer 01 - Void.png" id="2_xyjai"]
+[ext_resource type="Texture2D" uid="uid://cb21lm5yuew5x" path="res://Assets/Backgrounds/PNGs/Split up/Starry background  - Layer 03 - Stars.png" id="3_1d40m"]
+[ext_resource type="Texture2D" uid="uid://bk62sk2o71bua" path="res://Assets/Backgrounds/PNGs/Split up/Starry background  - Layer 03 - Stars 2.png" id="4_ff2wa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g10ny"]
+atlas = ExtResource("2_xyjai")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xavls"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g10ny")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnq18"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11hof"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6elh"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x015w"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(1920, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1qjp"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(2560, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jekvk"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(3200, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rewg"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(3840, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qba8p"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(4480, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pevg8"]
+atlas = ExtResource("3_1d40m")
+region = Rect2(5120, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j7mne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnq18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11hof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6elh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x015w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1qjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jekvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rewg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qba8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pevg8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omlkr"]
+atlas = ExtResource("4_ff2wa")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ne8s8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omlkr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Space" type="ParallaxBackground"]
+script = ExtResource("1_xfdbb")
+
+[node name="Relict" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 351)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Relict"]
+position = Vector2(128, 181)
+sprite_frames = SubResource("SpriteFrames_xavls")
+
+[node name="FarStars" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(640, 351)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FarStars"]
+position = Vector2(130, 180)
+sprite_frames = SubResource("SpriteFrames_j7mne")
+autoplay = "default"
+
+[node name="NearStars" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(640, 351)
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="NearStars"]
+position = Vector2(128, 182)
+sprite_frames = SubResource("SpriteFrames_ne8s8")
+frame_progress = 1.0

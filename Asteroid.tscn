@@ -1,0 +1,109 @@
+[gd_scene load_steps=16 format=3 uid="uid://csm1yhsmgipn0"]
+
+[ext_resource type="Texture2D" uid="uid://dhqkcwwb2lbim" path="res://Assets/Asteroids/PNGs/Asteroid 01 - Base.png" id="1_exwbq"]
+[ext_resource type="Script" path="res://Asteroid.gd" id="1_jsria"]
+[ext_resource type="Texture2D" uid="uid://j8a7q5cix4dy" path="res://Assets/Asteroids/PNGs/Asteroid 01 - Explode.png" id="2_awqrh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp5cv"]
+atlas = ExtResource("2_awqrh")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2ry0"]
+atlas = ExtResource("2_awqrh")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fup1y"]
+atlas = ExtResource("2_awqrh")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bs4h"]
+atlas = ExtResource("2_awqrh")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35q15"]
+atlas = ExtResource("2_awqrh")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a8kl"]
+atlas = ExtResource("2_awqrh")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1yvf"]
+atlas = ExtResource("2_awqrh")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elw86"]
+atlas = ExtResource("2_awqrh")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1jcl"]
+atlas = ExtResource("1_exwbq")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxmud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp5cv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2ry0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fup1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bs4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35q15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a8kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1yvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elw86")
+}],
+"loop": false,
+"name": &"Explode",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1jcl")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_me5qo"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdmt5"]
+radius = 16.0
+
+[node name="Asteroid" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_jsria")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bxmud")
+animation = &"Explode"
+autoplay = "Idle"
+frame = 7
+frame_progress = 1.0
+
+[node name="AsteroidSurface" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AsteroidSurface"]
+shape = SubResource("CircleShape2D_me5qo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kdmt5")
+
+[connection signal="body_shape_entered" from="AsteroidSurface" to="." method="_on_asteroid_surface_body_shape_entered"]

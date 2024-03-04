@@ -1,112 +1,9 @@
-[gd_scene load_steps=99 format=3 uid="uid://b6n14v7gleaw7"]
+[gd_scene load_steps=84 format=3 uid="uid://b6n14v7gleaw7"]
 
-[ext_resource type="Script" path="res://Space.gd" id="1_3f6q2"]
-[ext_resource type="Texture2D" uid="uid://orlpg0isflao" path="res://Assets/Backgrounds/PNGs/Condesed/Starry background  - Layer 01 - Void.png" id="1_pqyoj"]
-[ext_resource type="Texture2D" uid="uid://cb21lm5yuew5x" path="res://Assets/Backgrounds/PNGs/Split up/Starry background  - Layer 03 - Stars.png" id="2_j8875"]
-[ext_resource type="Texture2D" uid="uid://bk62sk2o71bua" path="res://Assets/Backgrounds/PNGs/Split up/Starry background  - Layer 03 - Stars 2.png" id="3_r8qmd"]
+[ext_resource type="PackedScene" uid="uid://bfekoed8ah4t2" path="res://Space.tscn" id="1_xomgk"]
 [ext_resource type="Texture2D" uid="uid://cqsb672vx3uu8" path="res://Assets/Planets/PNGs/Earth-Like planet.png" id="4_abbve"]
+[ext_resource type="Script" path="res://Asteroids.gd" id="4_eb68q"]
 [ext_resource type="PackedScene" uid="uid://djapl0b46wfg7" path="res://Ship.tscn" id="7_62gjn"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g10ny"]
-atlas = ExtResource("1_pqyoj")
-region = Rect2(0, 0, 640, 360)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xavls"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g10ny")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jnq18"]
-atlas = ExtResource("2_j8875")
-region = Rect2(0, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_11hof"]
-atlas = ExtResource("2_j8875")
-region = Rect2(640, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j6elh"]
-atlas = ExtResource("2_j8875")
-region = Rect2(1280, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x015w"]
-atlas = ExtResource("2_j8875")
-region = Rect2(1920, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o1qjp"]
-atlas = ExtResource("2_j8875")
-region = Rect2(2560, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jekvk"]
-atlas = ExtResource("2_j8875")
-region = Rect2(3200, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1rewg"]
-atlas = ExtResource("2_j8875")
-region = Rect2(3840, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qba8p"]
-atlas = ExtResource("2_j8875")
-region = Rect2(4480, 0, 640, 360)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pevg8"]
-atlas = ExtResource("2_j8875")
-region = Rect2(5120, 0, 640, 360)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_j7mne"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jnq18")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_11hof")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j6elh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x015w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o1qjp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jekvk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1rewg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qba8p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pevg8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_omlkr"]
-atlas = ExtResource("3_r8qmd")
-region = Rect2(0, 0, 640, 360)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ne8s8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_omlkr")
-}],
-"loop": false,
-"name": &"default",
-"speed": 0.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dyulh"]
 atlas = ExtResource("4_abbve")
@@ -655,36 +552,12 @@ animations = [{
 "speed": 11.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upbvc"]
+size = Vector2(2.85106, 45.9575)
 
-[node name="Space" type="ParallaxBackground" parent="."]
-script = ExtResource("1_3f6q2")
+[node name="World" type="Node2D"]
 
-[node name="Relict" type="ParallaxLayer" parent="Space"]
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(640, 351)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Space/Relict"]
-position = Vector2(128, 181)
-sprite_frames = SubResource("SpriteFrames_xavls")
-
-[node name="FarStars" type="ParallaxLayer" parent="Space"]
-motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(640, 351)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Space/FarStars"]
-position = Vector2(130, 180)
-sprite_frames = SubResource("SpriteFrames_j7mne")
-autoplay = "default"
-
-[node name="NearStars" type="ParallaxLayer" parent="Space"]
-motion_scale = Vector2(0.8, 0.8)
-motion_mirroring = Vector2(640, 351)
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Space/NearStars"]
-position = Vector2(128, 182)
-sprite_frames = SubResource("SpriteFrames_ne8s8")
-frame_progress = 1.0
+[node name="Space" parent="." instance=ExtResource("1_xomgk")]
 
 [node name="HomePlanet" type="AnimatedSprite2D" parent="."]
 position = Vector2(-128, 304)
@@ -693,7 +566,27 @@ sprite_frames = SubResource("SpriteFrames_s0rl2")
 autoplay = "default"
 frame_progress = 0.0644779
 
+[node name="StaticBody2D" type="StaticBody2D" parent="HomePlanet"]
+position = Vector2(16.3404, -38.8085)
+scale = Vector2(0.12766, 0.12766)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HomePlanet/StaticBody2D"]
+position = Vector2(16, 304)
+scale = Vector2(7.83333, 7.83333)
+shape = SubResource("RectangleShape2D_upbvc")
+
 [node name="Ship" parent="." instance=ExtResource("7_62gjn")]
 position = Vector2(64, 320)
 highestPosition = 128.0
 lowestPosition = 480.0
+
+[node name="Asteroids" type="Node2D" parent="."]
+script = ExtResource("4_eb68q")
+spawnX = 480
+spanYMin = 128
+spanYMax = 480
+
+[node name="Spawner" type="Timer" parent="Asteroids"]
+one_shot = true
+
+[connection signal="timeout" from="Asteroids/Spawner" to="Asteroids" method="_on_spawner_timeout"]
