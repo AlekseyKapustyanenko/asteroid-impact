@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://b6n14v7gleaw7"]
+[gd_scene load_steps=85 format=3 uid="uid://b6n14v7gleaw7"]
 
 [ext_resource type="PackedScene" uid="uid://bfekoed8ah4t2" path="res://Space.tscn" id="1_xomgk"]
 [ext_resource type="Texture2D" uid="uid://cqsb672vx3uu8" path="res://Assets/Planets/PNGs/Earth-Like planet.png" id="4_abbve"]
@@ -555,6 +555,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upbvc"]
 size = Vector2(2.85106, 45.9575)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3joo"]
+size = Vector2(20, 440)
+
 [node name="World" type="Node2D"]
 
 [node name="Space" parent="." instance=ExtResource("1_xomgk")]
@@ -588,5 +591,12 @@ spanYMax = 480
 
 [node name="Spawner" type="Timer" parent="Asteroids"]
 one_shot = true
+
+[node name="BulletTerminator" type="StaticBody2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletTerminator"]
+position = Vector2(520, 292)
+shape = SubResource("RectangleShape2D_l3joo")
 
 [connection signal="timeout" from="Asteroids/Spawner" to="Asteroids" method="_on_spawner_timeout"]

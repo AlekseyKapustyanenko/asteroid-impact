@@ -11,7 +11,6 @@ func _ready() -> void:
 	$Spawner.start()
 
 func _on_spawner_timeout() -> void:
-	print(str($Spawner.wait_time))
 	asteroid_spawn()
 	$Spawner.wait_time=rng.randf_range(1,3)
 	$Spawner.start()

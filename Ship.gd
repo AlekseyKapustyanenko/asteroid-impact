@@ -9,6 +9,11 @@ const positionStep = 2;
 @export var highestPosition = 0.0
 @export var lowestPosition = 0.0
 
+var bullet_preload = preload("res://Bullet.tscn")
+
+func _ready() -> void:
+	$AnimationPlayer.play("fire")
+
 func _physics_process(delta: float) -> void:	
 	var direction := get_direction(_targetPosition.y-position.y)
 	if direction:
@@ -30,3 +35,13 @@ func get_direction(delta: float) -> int:
 	if delta < -positionStep:
 		return -1
 	return 0
+
+func fire_left_gun()->void:
+	var bullet = bullet_preload.instantiate()
+	bullet.position = Vector2(position.x+11,position.y-6)
+	add_sibling(bullet)
+	
+func fire_right_gun()->void:
+	var bullet = bullet_preload.instantiate()
+	bullet.position = Vector2(position.x+11,position.y+6)
+	add_sibling(bullet)
