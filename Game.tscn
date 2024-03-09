@@ -659,9 +659,9 @@ text = "1000
 script = ExtResource("7_c3yvt")
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
-offset_left = 200.0
+offset_left = 186.0
 offset_top = 408.0
-offset_right = 253.0
+offset_right = 239.0
 offset_bottom = 434.0
 theme_override_colors/font_color = Color(0.277611, 0.897035, 0.726865, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -670,9 +670,9 @@ theme_override_font_sizes/font_size = 18
 text = "Score:"
 
 [node name="ScoreValue" type="Label" parent="HUD"]
-offset_left = 258.0
+offset_left = 244.0
 offset_top = 409.0
-offset_right = 298.0
+offset_right = 284.0
 offset_bottom = 435.0
 theme_override_colors/font_color = Color(0.277611, 0.897035, 0.726865, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
