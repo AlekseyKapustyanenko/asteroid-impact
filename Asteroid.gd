@@ -1,24 +1,33 @@
-extends CharacterBody2D
+extends Area2D
 
+signal on_destroyed_by_bullet(score)
 
 var rotationSpeed:float
 var speed:float
-@onready var anim = $AnimatedSprite2D
+@onready var anim = $AteroidAnimation
+var damage:int
 
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
 	rotationSpeed=rng.randf_range(-360.0, 360.0)
 	speed=rng.randf_range(30.0, 50.0)
-	velocity.x=-speed;
+	damage=rng.randi_range(10,20)
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	rotation_degrees=rotation_degrees+delta*rotationSpeed
+	position.x=position.x-speed*delta;
 
-	move_and_slide()
+func _on_body_entered(body: Node2D) -> void:
+	if(body.has_method("apply_damage")):
+		body.apply_damage(damage);
+	anim.play("Explode")
+	await anim.animation_finished
+	queue_free()
 
-
-
-func _on_asteroid_surface_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_area_entered(area: Area2D) -> void:
+	if(area.is_in_group("Bullet")):
+		$AsteroidCollision.set_deferred("disabled", true)
+		on_destroyed_by_bullet.emit(damage)		
 	anim.play("Explode")
 	await anim.animation_finished
 	queue_free()

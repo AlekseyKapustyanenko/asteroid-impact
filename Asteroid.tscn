@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://csm1yhsmgipn0"]
+[gd_scene load_steps=15 format=3 uid="uid://csm1yhsmgipn0"]
 
 [ext_resource type="Texture2D" uid="uid://dhqkcwwb2lbim" path="res://Assets/Asteroids/PNGs/Asteroid 01 - Base.png" id="1_exwbq"]
 [ext_resource type="Script" path="res://Asteroid.gd" id="1_jsria"]
@@ -83,29 +83,18 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_me5qo"]
 radius = 18.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kdmt5"]
-radius = 16.0
-
-[node name="Asteroid" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 5
+[node name="Asteroid" type="Area2D"]
+collision_layer = 4
+collision_mask = 11
 script = ExtResource("1_jsria")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AteroidAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bxmud")
-animation = &"Explode"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 7
-frame_progress = 1.0
 
-[node name="AsteroidSurface" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AsteroidSurface"]
+[node name="AsteroidCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_me5qo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_kdmt5")
-
-[connection signal="body_shape_entered" from="AsteroidSurface" to="." method="_on_asteroid_surface_body_shape_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,16 +1,18 @@
-extends Area2D
+extends StaticBody2D
 
-var speed = 100
+var health = 1000
+
+signal on_hp_changed(new_hp: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_to_group("Bullet")
+	on_hp_changed.emit(health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x+=delta*speed
+	pass
 
-
-func _on_area_entered(area: Area2D) -> void:
-	queue_free()
+func apply_damage(damage:float)->void:
+	health-=damage
+	on_hp_changed.emit(health)

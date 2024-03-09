@@ -1,9 +1,14 @@
-[gd_scene load_steps=85 format=3 uid="uid://b6n14v7gleaw7"]
+[gd_scene load_steps=90 format=3 uid="uid://b6n14v7gleaw7"]
 
+[ext_resource type="Script" path="res://Game.gd" id="1_ivrrr"]
 [ext_resource type="PackedScene" uid="uid://bfekoed8ah4t2" path="res://Space.tscn" id="1_xomgk"]
+[ext_resource type="Script" path="res://HomePlanet.gd" id="3_mt0hg"]
 [ext_resource type="Texture2D" uid="uid://cqsb672vx3uu8" path="res://Assets/Planets/PNGs/Earth-Like planet.png" id="4_abbve"]
 [ext_resource type="Script" path="res://Asteroids.gd" id="4_eb68q"]
+[ext_resource type="Script" path="res://ShipHpValue.gd" id="5_5lwcj"]
 [ext_resource type="PackedScene" uid="uid://djapl0b46wfg7" path="res://Ship.tscn" id="7_62gjn"]
+[ext_resource type="Script" path="res://PlanetHpValue.gd" id="7_c3yvt"]
+[ext_resource type="Script" path="res://ScoreValue.gd" id="8_4ngad"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dyulh"]
 atlas = ExtResource("4_abbve")
@@ -559,21 +564,24 @@ size = Vector2(2.85106, 45.9575)
 size = Vector2(20, 440)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_ivrrr")
 
 [node name="Space" parent="." instance=ExtResource("1_xomgk")]
 
-[node name="HomePlanet" type="AnimatedSprite2D" parent="."]
-position = Vector2(-128, 304)
-scale = Vector2(7.83333, 7.83333)
+[node name="HomePlanet" type="StaticBody2D" parent="."]
+position = Vector2(-0.000244141, 0.000213623)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_mt0hg")
+
+[node name="HomePlanetAnimation" type="AnimatedSprite2D" parent="HomePlanet"]
+position = Vector2(-127.999, 303.999)
+scale = Vector2(7.83331, 7.83331)
 sprite_frames = SubResource("SpriteFrames_s0rl2")
 autoplay = "default"
 frame_progress = 0.0644779
 
-[node name="StaticBody2D" type="StaticBody2D" parent="HomePlanet"]
-position = Vector2(16.3404, -38.8085)
-scale = Vector2(0.12766, 0.12766)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HomePlanet/StaticBody2D"]
+[node name="HitBox" type="CollisionShape2D" parent="HomePlanet"]
 position = Vector2(16, 304)
 scale = Vector2(7.83333, 7.83333)
 shape = SubResource("RectangleShape2D_upbvc")
@@ -592,11 +600,91 @@ spanYMax = 480
 [node name="Spawner" type="Timer" parent="Asteroids"]
 one_shot = true
 
-[node name="BulletTerminator" type="StaticBody2D" parent="."]
+[node name="BulletTerminator" type="Area2D" parent="."]
 collision_layer = 8
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletTerminator"]
+[node name="BulletTerminatorCollision" type="CollisionShape2D" parent="BulletTerminator"]
 position = Vector2(520, 292)
 shape = SubResource("RectangleShape2D_l3joo")
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ShipHpLabel" type="Label" parent="HUD"]
+offset_left = 186.0
+offset_top = 10.0
+offset_right = 266.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.817523, 0, 0.14977, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "Ship HP:"
+
+[node name="PlanetHpLabel" type="Label" parent="HUD"]
+offset_left = 168.0
+offset_top = 34.0
+offset_right = 264.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.262346, 0.400757, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "Planet HP:"
+
+[node name="ShipHpValue" type="Label" parent="HUD"]
+offset_left = 264.0
+offset_top = 10.0
+offset_right = 304.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.815686, 0, 0.14902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "100
+"
+script = ExtResource("5_5lwcj")
+
+[node name="PlanetHpValue" type="Label" parent="HUD"]
+offset_left = 264.0
+offset_top = 34.0
+offset_right = 306.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.262745, 0.4, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "1000
+"
+script = ExtResource("7_c3yvt")
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_left = 200.0
+offset_top = 408.0
+offset_right = 253.0
+offset_bottom = 434.0
+theme_override_colors/font_color = Color(0.277611, 0.897035, 0.726865, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "Score:"
+
+[node name="ScoreValue" type="Label" parent="HUD"]
+offset_left = 258.0
+offset_top = 409.0
+offset_right = 298.0
+offset_bottom = 435.0
+theme_override_colors/font_color = Color(0.277611, 0.897035, 0.726865, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 18
+text = "0"
+script = ExtResource("8_4ngad")
+
+[connection signal="scores_changed" from="." to="HUD/ScoreValue" method="_on_world_scores_changed"]
+[connection signal="on_hp_changed" from="HomePlanet" to="." method="_on_home_planet_on_hp_changed"]
+[connection signal="on_hp_changed" from="HomePlanet" to="HUD/PlanetHpValue" method="_on_home_planet_on_hp_changed"]
+[connection signal="on_hp_changed" from="Ship" to="." method="_on_ship_on_hp_changed"]
+[connection signal="on_hp_changed" from="Ship" to="HUD/ShipHpValue" method="_on_ship_on_hp_changed"]
+[connection signal="asteroid_destroyed_by_bullet" from="Asteroids" to="." method="_on_asteroids_asteroid_destroyed_by_bullet"]
 [connection signal="timeout" from="Asteroids/Spawner" to="Asteroids" method="_on_spawner_timeout"]

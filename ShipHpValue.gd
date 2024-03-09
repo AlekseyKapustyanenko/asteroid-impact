@@ -1,16 +1,14 @@
-extends Area2D
-
-var speed = 100
+extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_to_group("Bullet")
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x+=delta*speed
+	pass
 
 
-func _on_area_entered(area: Area2D) -> void:
-	queue_free()
+func _on_ship_on_hp_changed(new_hp: int) -> void:
+	text=str(new_hp)

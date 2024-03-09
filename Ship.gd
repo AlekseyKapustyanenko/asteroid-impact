@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
-
 const SPEED = 100.0
 const navigationStep = 10;
 const positionStep = 2;
+
+var health = 100;
+
 @onready var _targetPosition = position;
 
 @export var highestPosition = 0.0
@@ -11,8 +13,11 @@ const positionStep = 2;
 
 var bullet_preload = preload("res://Bullet.tscn")
 
+signal on_hp_changed(new_hp: int)
+
 func _ready() -> void:
 	$AnimationPlayer.play("fire")
+	on_hp_changed.emit(health)
 
 func _physics_process(delta: float) -> void:	
 	var direction := get_direction(_targetPosition.y-position.y)
@@ -45,3 +50,7 @@ func fire_right_gun()->void:
 	var bullet = bullet_preload.instantiate()
 	bullet.position = Vector2(position.x+11,position.y+6)
 	add_sibling(bullet)
+
+func apply_damage(damage:float)->void:
+	health-=damage
+	on_hp_changed.emit(health)
