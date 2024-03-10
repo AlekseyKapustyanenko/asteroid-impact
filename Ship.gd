@@ -4,7 +4,7 @@ const SPEED = 100.0
 const navigationStep = 10;
 const positionStep = 2;
 
-var health = 1;
+var health = 100;
 
 @onready var _targetPosition = position;
 
@@ -14,6 +14,8 @@ var health = 1;
 var bullet_preload = preload("res://Bullet.tscn")
 
 signal on_hp_changed(new_hp: int)
+
+signal on_ship_death()
 
 func _ready() -> void:
 	$AnimationPlayer.play("fire")
@@ -54,10 +56,14 @@ func fire_right_gun()->void:
 func apply_damage(damage:float)->void:
 	health-=damage
 	on_hp_changed.emit(health)
+	if(health<=0):
+		death()
 
 func death():
 	$EnguineEffect.visible=false
 	$AnimatedSprite2D.visible=false
 	$ShipBody.visible=false
 	$Enguine.visible=false
-	queue_free()
+	$AnimationPlayer.play("shipDeath")
+	await $AnimationPlayer.animation_finished
+	on_ship_death.emit()

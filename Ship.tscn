@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://djapl0b46wfg7"]
+[gd_scene load_steps=30 format=3 uid="uid://djapl0b46wfg7"]
 
 [ext_resource type="Script" path="res://Ship.gd" id="1_u5g71"]
 [ext_resource type="Texture2D" uid="uid://6g3bwhbfdtua" path="res://Assets/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Idle.png" id="2_rgigk"]
 [ext_resource type="Texture2D" uid="uid://cfwu0xxodx47h" path="res://Assets/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="2_x52xo"]
 [ext_resource type="Texture2D" uid="uid://de4eki018kxl5" path="res://Assets/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Auto Cannon.png" id="3_0iwwj"]
 [ext_resource type="Texture2D" uid="uid://tjy21f1sa3yw" path="res://Assets/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="3_t7hhv"]
+[ext_resource type="Texture2D" uid="uid://j8a7q5cix4dy" path="res://Assets/Asteroids/PNGs/Asteroid 01 - Explode.png" id="6_lvfgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fnjoy"]
 atlas = ExtResource("2_rgigk")
@@ -179,11 +180,85 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_8gs1v"]
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipDeath:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShipDeath:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["shipDeath"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t0dxx"]
 _data = {
 "default": SubResource("Animation_384rn"),
-"fire": SubResource("Animation_vhen3")
+"fire": SubResource("Animation_vhen3"),
+"shipDeath": SubResource("Animation_8gs1v")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wssvf"]
+atlas = ExtResource("6_lvfgy")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7etp7"]
+atlas = ExtResource("6_lvfgy")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1nau"]
+atlas = ExtResource("6_lvfgy")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eavwv"]
+atlas = ExtResource("6_lvfgy")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ioaq"]
+atlas = ExtResource("6_lvfgy")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3q46f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wssvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7etp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1nau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eavwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ioaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wssvf")
+}],
+"loop": false,
+"name": &"shipDeath",
+"speed": 10.0
+}]
 
 [node name="Ship" type="CharacterBody2D"]
 collision_mask = 0
@@ -230,3 +305,7 @@ shape = SubResource("CapsuleShape2D_0wgdl")
 libraries = {
 "": SubResource("AnimationLibrary_t0dxx")
 }
+
+[node name="ShipDeath" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3q46f")
+animation = &"shipDeath"

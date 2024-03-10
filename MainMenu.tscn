@@ -22,6 +22,7 @@ minSpawnTime = 0.2
 maxSpawnTime = 0.5
 
 [node name="PlayButton" type="Button" parent="."]
+process_mode = 3
 offset_left = 128.0
 offset_top = 128.0
 offset_right = 320.0

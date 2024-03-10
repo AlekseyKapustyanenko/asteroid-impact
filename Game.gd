@@ -4,6 +4,7 @@ var shipHp:int
 var planetHp:int
 var scores=0;
 var pauseMenuPreload = preload("res://PauseMenu.tscn")
+var gameOverMenuPreload=preload("res://GameOverMenu.tscn")
 
 signal scores_changed(scores:int)
 
@@ -35,6 +36,18 @@ func pause():
 	get_tree().paused=true
 	var pauseMenu = pauseMenuPreload.instantiate()
 	add_child(pauseMenu)
+	
 
-func _on_button_pressed() -> void:
-	pause()
+
+func _on_ship_on_ship_death() -> void:
+	gameOver()
+
+func gameOver():
+	$HUD.visible=false
+	var gameOver=gameOverMenuPreload.instantiate()
+	gameOver.score=scores
+	add_child(gameOver)
+
+
+func _on_home_planet_on_planet_death() -> void:
+	gameOver()

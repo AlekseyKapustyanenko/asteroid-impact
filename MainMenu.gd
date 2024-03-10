@@ -1,5 +1,8 @@
 extends Node2D
 
+func _ready() -> void:
+	get_tree().paused=false
+	$HomePlanet.health=9223372036854775807
 
 
 func _on_quit_button_pressed() -> void:

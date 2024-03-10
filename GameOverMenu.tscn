@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr3ldss8sgua4"]
+
+[ext_resource type="Script" path="res://GameOverMenu.gd" id="1_y1qpc"]
+
+[node name="GameOverMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_y1qpc")
+
+[node name="GameOverText" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 72.0
+offset_right = 312.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0.670588, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="YourScoreIsText" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 136.0
+offset_right = 247.0
+offset_bottom = 181.0
+theme_override_colors/font_color = Color(0.277611, 0.897035, 0.726865, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 28
+text = "Your score is:"
+
+[node name="ScoreValue" type="Label" parent="."]
+offset_left = 296.0
+offset_top = 136.0
+offset_right = 408.0
+offset_bottom = 175.0
+theme_override_colors/font_color = Color(0.277611, 0.897035, 0.726865, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 2
+
+[node name="MainMenu" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 184.0
+offset_right = 320.0
+offset_bottom = 248.0
+text = "Main menu"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 272.0
+offset_right = 320.0
+offset_bottom = 336.0
+text = "Quit"
+
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
