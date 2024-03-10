@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxtogsf4pnlo5"]
+
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_t6r1u"]
+[ext_resource type="PackedScene" uid="uid://bfekoed8ah4t2" path="res://Space.tscn" id="1_xtpay"]
+[ext_resource type="PackedScene" uid="uid://u280pgs25fsf" path="res://HomePlanet.tscn" id="2_ryuwo"]
+[ext_resource type="PackedScene" uid="uid://dtyjnjby7c60v" path="res://Asteroids.tscn" id="3_mocpi"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_t6r1u")
+
+[node name="Space" parent="." instance=ExtResource("1_xtpay")]
+
+[node name="HomePlanet" parent="." instance=ExtResource("2_ryuwo")]
+position = Vector2(0, -72)
+
+[node name="Asteroids" parent="." instance=ExtResource("3_mocpi")]
+spanYMin = 0
+spanYMax = 450
+minSpeed = 150
+maxSpeed = 250
+minSpawnTime = 0.2
+maxSpawnTime = 0.5
+
+[node name="PlayButton" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 320.0
+offset_bottom = 192.0
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="."]
+auto_translate_mode = 1
+offset_left = 128.0
+offset_top = 216.0
+offset_right = 320.0
+offset_bottom = 280.0
+text = "Quit"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

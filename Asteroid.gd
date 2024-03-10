@@ -3,14 +3,14 @@ extends Area2D
 signal on_destroyed_by_bullet(score)
 
 var rotationSpeed:float
-var speed:float
+@export var speed:float
 @onready var anim = $AteroidAnimation
 var damage:int
+
 
 func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
 	rotationSpeed=rng.randf_range(-360.0, 360.0)
-	speed=rng.randf_range(30.0, 50.0)
 	damage=rng.randi_range(10,20)
 
 func _process(delta: float) -> void:
