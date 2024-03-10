@@ -4,7 +4,7 @@ const SPEED = 100.0
 const navigationStep = 10;
 const positionStep = 2;
 
-var health = 100;
+var health = 1;
 
 @onready var _targetPosition = position;
 
@@ -54,3 +54,10 @@ func fire_right_gun()->void:
 func apply_damage(damage:float)->void:
 	health-=damage
 	on_hp_changed.emit(health)
+
+func death():
+	$EnguineEffect.visible=false
+	$AnimatedSprite2D.visible=false
+	$ShipBody.visible=false
+	$Enguine.visible=false
+	queue_free()
