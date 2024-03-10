@@ -3,6 +3,7 @@ extends Node2D
 var shipHp:int
 var planetHp:int
 var scores=0;
+var pauseMenuPreload = preload("res://PauseMenu.tscn")
 
 signal scores_changed(scores:int)
 
@@ -25,3 +26,15 @@ func _on_ship_on_hp_changed(new_hp: int) -> void:
 func _on_asteroids_asteroid_destroyed_by_bullet(score: int) -> void:
 	scores+=score
 	scores_changed.emit(scores)
+
+func _notification(what: int) -> void:
+	if(what == NOTIFICATION_WM_GO_BACK_REQUEST):
+		pause()
+
+func pause():
+	get_tree().paused=true
+	var pauseMenu = pauseMenuPreload.instantiate()
+	add_child(pauseMenu)
+
+func _on_button_pressed() -> void:
+	pause()

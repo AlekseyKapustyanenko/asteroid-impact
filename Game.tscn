@@ -107,9 +107,16 @@ theme_override_font_sizes/font_size = 18
 text = "0"
 script = ExtResource("8_4ngad")
 
+[node name="Button" type="Button" parent="HUD"]
+offset_left = 176.0
+offset_top = 60.0
+offset_right = 312.0
+offset_bottom = 88.0
+
 [connection signal="scores_changed" from="." to="HUD/ScoreValue" method="_on_world_scores_changed"]
 [connection signal="on_hp_changed" from="HomePlanet" to="." method="_on_home_planet_on_hp_changed"]
 [connection signal="on_hp_changed" from="HomePlanet" to="HUD/PlanetHpValue" method="_on_home_planet_on_hp_changed"]
 [connection signal="on_hp_changed" from="Ship" to="." method="_on_ship_on_hp_changed"]
 [connection signal="on_hp_changed" from="Ship" to="HUD/ShipHpValue" method="_on_ship_on_hp_changed"]
 [connection signal="asteroid_destroyed_by_bullet" from="Asteroids" to="." method="_on_asteroids_asteroid_destroyed_by_bullet"]
+[connection signal="pressed" from="HUD/Button" to="." method="_on_button_pressed"]
