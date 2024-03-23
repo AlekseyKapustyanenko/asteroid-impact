@@ -24,18 +24,26 @@ maxSpawnTime = 0.5
 [node name="PlayButton" type="Button" parent="."]
 process_mode = 3
 offset_left = 128.0
-offset_top = 128.0
+offset_top = 104.0
 offset_right = 320.0
-offset_bottom = 192.0
+offset_bottom = 168.0
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="."]
 auto_translate_mode = 1
 offset_left = 128.0
-offset_top = 216.0
+offset_top = 280.0
 offset_right = 320.0
-offset_bottom = 280.0
+offset_bottom = 344.0
 text = "Quit"
+
+[node name="InstructionsButton" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 192.0
+offset_right = 320.0
+offset_bottom = 256.0
+text = "Instructions"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="InstructionsButton" to="." method="_on_instructions_button_pressed"]

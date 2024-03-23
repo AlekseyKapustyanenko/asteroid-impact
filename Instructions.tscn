@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://be4xheok8yg14"]
+
+[ext_resource type="PackedScene" uid="uid://bfekoed8ah4t2" path="res://Space.tscn" id="1_go0dn"]
+[ext_resource type="Script" path="res://Instructions.gd" id="1_xlbbf"]
+[ext_resource type="PackedScene" uid="uid://u280pgs25fsf" path="res://HomePlanet.tscn" id="2_qdfgo"]
+
+[node name="Instructions" type="Node2D"]
+script = ExtResource("1_xlbbf")
+
+[node name="Space" parent="." instance=ExtResource("1_go0dn")]
+
+[node name="HomePlanet" parent="." instance=ExtResource("2_qdfgo")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 104.0
+offset_top = 88.0
+offset_right = 384.0
+offset_bottom = 260.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "- navigate ship with physical bezel, virtual bezel or crown on your watches.
+- destroy asterids with ship's rockets
+- fight until ship or home planet is alive"
+
+[node name="MainMenuButton" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 280.0
+offset_right = 320.0
+offset_bottom = 344.0
+text = "Main menu"
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

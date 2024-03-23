@@ -15,12 +15,12 @@ offset_right = 320.0
 offset_bottom = 168.0
 text = "Resume"
 
-[node name="NewGame" type="Button" parent="CanvasLayer"]
+[node name="MainMenu" type="Button" parent="CanvasLayer"]
 offset_left = 128.0
 offset_top = 192.0
 offset_right = 320.0
 offset_bottom = 256.0
-text = "Start new game"
+text = "MainMenu"
 
 [node name="Quit" type="Button" parent="CanvasLayer"]
 offset_left = 128.0
@@ -30,5 +30,5 @@ offset_bottom = 344.0
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CanvasLayer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]
