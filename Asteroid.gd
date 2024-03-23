@@ -1,3 +1,4 @@
+class_name Asteroid
 extends Area2D
 
 signal on_destroyed_by_bullet(score)

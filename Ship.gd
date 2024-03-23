@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
+const SPEED = 110.0
 const navigationStep = 10;
 const positionStep = 2;
 
 var health = 100;
 
 @onready var _targetPosition = position;
+@onready var camera = $Camera2D
 
 @export var highestPosition = 0.0
 @export var lowestPosition = 0.0

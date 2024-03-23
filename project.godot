@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Asteroid-impact"
+config/version="1.1.0"
 run/main_scene="res://MainMenu.tscn"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.3", "Mobile")
 run/max_fps=25
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
-boot_splash/image="res://splash.png"
+boot_splash/image="res://SplashScreen.png"
 config/icon="res://icon.png"
 
 [display]
